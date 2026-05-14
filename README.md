@@ -73,3 +73,5 @@ Max absolute error = 6.24716291e-15
 ```sh
 pip install -r requirements.txt
 ```
+
+* *`yadro_fft` в репозитории -  уже собранный бинарный файл.*
