@@ -27,6 +27,9 @@ void FFT::transform(std::vector<std::complex<double>>& array, bool inverse) {
     if (N == 1) return;
 
     const size_t radix = choose_radix(N);
+    if (radix == 0) {
+        throw std::invalid_argument("Array length must have only divisors 2, 3, 5");
+    }
     const size_t M = N / radix;
 
     std::vector<std::vector<std::complex<double>>> array_parts (
