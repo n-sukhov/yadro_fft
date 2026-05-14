@@ -2,6 +2,7 @@
 #include <cmath>
 #include <stdexcept>
 
+// Выбор основания разбиения
 std::size_t FFT::choose_radix(std::size_t n) {
     if (n % 2 == 0) return 2;
     if (n % 3 == 0) return 3;
@@ -9,6 +10,7 @@ std::size_t FFT::choose_radix(std::size_t n) {
     return 0;
 }
 
+// Проверка допустимости длины преобразования
 void FFT::check_length(std::size_t n) {
     if (n == 0) {
         throw std::invalid_argument("Array length must be positive");
@@ -22,6 +24,11 @@ void FFT::check_length(std::size_t n) {
     }
 }
 
+
+/*Рекурсивное преобразование, осноанное на алгоритме Кули-Тьюки
+  inverse = false — прямое
+  inverse = true  — обратное
+*/
 void FFT::transform(std::vector<std::complex<double>>& array, bool inverse) {
     const size_t N = array.size();
     if (N == 1) return;
@@ -64,6 +71,10 @@ void FFT::transform(std::vector<std::complex<double>>& array, bool inverse) {
     }
 }
 
+/*Прямое БПФ
+  на вход подается комплексный сигнал
+  на выходе получается комплексный спектр
+*/
 std::vector<std::complex<double>> FFT::fft(
     const std::vector<std::complex<double>>& signal
 ) const {
@@ -74,6 +85,10 @@ std::vector<std::complex<double>> FFT::fft(
     return spectrum;
 }
 
+/*Обратное БПФ
+  на вход подается спектр
+  на выходе получается восстановленный сигнал
+*/
 std::vector<std::complex<double>> FFT::ifft(
     const std::vector<std::complex<double>>& spectrum
 ) const {

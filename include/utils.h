@@ -20,6 +20,9 @@ inline void csv_write(
     const std::string& filename,
     const std::vector<std::complex<double>>& data
 ) {
+    /* Записывает комплексный вектор data в csv-файл filename:
+    индекс строки, вещественная часть, мнимая часть
+    */
     std::ofstream file(filename);
 
     if (!file.is_open()) {
